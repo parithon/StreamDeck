@@ -10,6 +10,7 @@ namespace StreamDeck.Template
     {
         static async Task<int> Main(string[] args)
         {
+
             if (args.Any(arg => arg.ToLower() == "--generatemanifest"))
             {
                 return await StreamDeckHost.GenerateManifest();
@@ -21,7 +22,7 @@ namespace StreamDeck.Template
         }
 
         static IStreamDeckHostBuilder CreateStreamDeckHost(string[] args) =>
-            StreamDeckHost.CreateDefaultHost(args)
+            StreamDeckHost.CreateDefaultStreamDeckHost(args)
                 .UseStartup<Startup>();
     }
 }

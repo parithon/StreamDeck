@@ -13,7 +13,9 @@ namespace StreamDeck.SDK.Abstractions
         IEnumerable<IStreamDeckActionState> States { get; }
         bool SupportedInMultiActions { get; }
         string Tooltip { get; }
-        void OnKeyDown(KeyDownEventArgs e);
-        void OnKeyUp(KeyUpEventArgs e);
+        void OnKeyDown(KeyEventArgs e);
+        void OnKeyUp(KeyEventArgs e);
+        void OnWillAppear(SettingsEventArgs e);
+        void OnWillDisappear(SettingsEventArgs e);
     }
 }

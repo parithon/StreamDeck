@@ -1,20 +1,21 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace StreamDeck.SDK.Models
 {
     internal class ActionPayload
     {
         [JsonProperty("settings")]
-        public dynamic Settings { get; set; }
+        public Dictionary<string, string> Settings { get; set; } = new Dictionary<string, string>();
 
         [JsonProperty("coordinates")]
-        public Size Coordinates { get; set; }
+        public Coordinates Coordinates { get; set; }
 
         [JsonProperty("state")]
         public int State { get; set; }
 
         [JsonProperty("userDesiredState")]
-        public bool UserDesiredState { get; set; }
+        public int UserDesiredState { get; set; }
 
         [JsonProperty("isInMultiAction")]
         public bool IsInMultiAction { get; set; }
