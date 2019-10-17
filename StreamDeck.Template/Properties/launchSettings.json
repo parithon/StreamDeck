@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "StreamDeck.Template": {
+      "commandName": "Project",
+      "commandLineArgs": "--generatemanifest"
+    }
+  }
+}

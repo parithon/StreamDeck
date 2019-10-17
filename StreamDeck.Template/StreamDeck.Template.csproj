@@ -1,8 +1,73 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <IsWindows>false</IsWindows>
+    <IsOSX>false</IsOSX>
+    <IsWindows Condition="'$(OS)' == 'Windows_NT'">true</IsWindows>
+    <IsOSX Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' == 'true'">true</IsOSX>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <sdPlugin Condition="$(IsWindows)">$(AppData)\Elgato\StreamDeck\Plugins\com.elgato.counter-csharp.sdPlugin</sdPlugin>
+    <sdPlugin Condition="$(IsOSX)">$(HOME)/Library/Application Support/com.elgato.StreamDeck/Plugins/com.elgato.counter-csharp.sdPlugin</sdPlugin>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StreamDeck.SDK\StreamDeck.SDK.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="manifest.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\actionDefaultImage%402x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\actionDefaultImage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\actionIcon%402x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\actionIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\buildIcon%402x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\buildIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\pluginIcon%402x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\pluginIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="GenerateManifestActions" AfterTargets="Build">
+    <Message Text="Generating Actions in Manifest" Importance="high" />
+    <Exec Command="$(TargetName).exe --generatemanifest" WorkingDirectory="$(TargetDir)" Condition="$(IsWindows)" />
+    <Exec Command="$(TargetDir)/$(TargetName) --generatemanifest" WorkingDirectory="$(TargetDir)" Condition="$(IsOSX)" />
+  </Target>
+
+  <Target Name="CopyToSDPluginDirectory" AfterTargets="GenerateManifestActions">
+    <ItemGroup>
+      <CopyFiles Include="$(TargetDir)\**\*.*" />
+    </ItemGroup>
+    <MakeDir Directories="$(sdPlugin)" Condition="!Exists('$(sdPlugin)')" />
+    <Copy SourceFiles="@(CopyFiles)" DestinationFolder="$(sdPlugin)\%(RecursiveDir)" OverwriteReadOnlyFiles="true" Retries="3" RetryDelayMilliseconds="300" SkipUnchangedFiles="true" />
+    <Message Text="StreamDeck.DevOps.ConsoleApp -&gt; $(sdPlugin)" Importance="high" />
+  </Target>
+
+  <Target Name="CleanSDPluginDirectory" AfterTargets="Clean">
+    <RemoveDir Directories="$(sdPlugin)" Condition="Exists('$(sdPlugin)')" />
+  </Target>
+  
 </Project>
