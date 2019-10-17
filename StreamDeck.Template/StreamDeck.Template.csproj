@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StreamDeck.SDK\StreamDeck.SDK.csproj" />
+    <PackageReference Include="StreamDeck.SDK" Version="0.1.1741956" />
   </ItemGroup>
 
   <ItemGroup>

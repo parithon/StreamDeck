@@ -1,11 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamDeck.SDK", "StreamDeck.SDK\StreamDeck.SDK.csproj", "{4208B0E5-757C-45E8-8766-5CF2E05FAA12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreamDeck.SDK", "StreamDeck.SDK\StreamDeck.SDK.csproj", "{4208B0E5-757C-45E8-8766-5CF2E05FAA12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamDeck.Template", "StreamDeck.Template\StreamDeck.Template.csproj", "{F08C36E6-7BF3-4547-A04C-1FEAF23C1389}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreamDeck.Template", "StreamDeck.Template\StreamDeck.Template.csproj", "{F08C36E6-7BF3-4547-A04C-1FEAF23C1389}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{87F79258-B06E-463F-B3FC-29785E431345}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		global.json = global.json
+		nupkg.config = nupkg.config
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4208B0E5-757C-45E8-8766-5CF2E05FAA12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -44,5 +49,11 @@ Global
 		{F08C36E6-7BF3-4547-A04C-1FEAF23C1389}.Release|x64.Build.0 = Release|Any CPU
 		{F08C36E6-7BF3-4547-A04C-1FEAF23C1389}.Release|x86.ActiveCfg = Release|Any CPU
 		{F08C36E6-7BF3-4547-A04C-1FEAF23C1389}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3CFB18DC-EECD-4DE7-A0E8-04A903EECC3F}
 	EndGlobalSection
 EndGlobal
