@@ -10,6 +10,11 @@ pool:
   vmImage: 'windows-2019'
 
 steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    useGlobalJson: true
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
